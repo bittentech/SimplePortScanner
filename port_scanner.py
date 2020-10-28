@@ -1,15 +1,19 @@
 import socket
 import time
 import threading
-
+import argparse
 startTime = time.time()
 
-
-start_port = 10
-end_port = 1000
+parser = argparse.ArgumentParser("Usage: port_scanner.py -t TARGET -sp [START_PORT] -ep [END_PORT]")
+parser.add_argument("-t","--target",required = True)
+parser.add_argument("-sp","--start-port")
+parser.add_argument("-ep","--end-port")
+args = parser.parse_args()
+target = args.target
+start_port = int(args.start_port)
+end_port = int(args.end_port)
 
 #t_IP = socket.gethostbyname(target)
-target = input("Enter your target IP/Hostname")
 print ('Starting scan on host: ', target)
 
 def scan_port(port):
